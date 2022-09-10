@@ -9,6 +9,8 @@ const http = require("http");
 const server = http.createServer(app);
 
 const authRoute = require("./routes/auth");
+const userRoute = require("./routes/user");
+const postRoute = require("./routes/post");
 
 const port = 8000;
 dotenv.config();
@@ -31,6 +33,8 @@ app.get("/api", (req, res) => {
 
 //routes
 app.use("/auth", authRoute);
+app.use("/user", userRoute);
+app.use("/post", postRoute);
 
 server.listen(process.env.PORT || port, () => {
   console.log("Server is running... at port " + port);
