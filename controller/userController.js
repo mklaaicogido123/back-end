@@ -18,7 +18,7 @@ const userController = {
       const { username, password } = req.body;
 
       const user = await User.findOne({
-        user_name: username,
+        username: username,
         password: password,
       });
       if (!user) {
@@ -81,7 +81,20 @@ const userController = {
 
   getUserByFullName: async (req, res) => {
     try {
-      const user = await User.findOne({ name: req.params.fullname });
+      const user = await User.find({
+        fullname: { $regex: req.body.fullname },
+      });
+      // db.users.findOne({"username" : {$regex : "son"}});
+      res.status(200).json(user);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  },
+  getUser: async (req, res) => {
+    try {
+      const user = await User.findOne({
+        _id: req.params.id,
+      });
       res.status(200).json(user);
     } catch (error) {
       res.status(500).json(error);
