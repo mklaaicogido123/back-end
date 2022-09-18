@@ -48,13 +48,11 @@ const userSchema = new mongoose.Schema(
         ref: "User",
       },
     ],
-    avatar_url: [
-      {
-        type: String,
-        default:
-          "https://haycafe.vn/wp-content/uploads/2021/11/Anh-avatar-dep-chat-lam-hinh-dai-dien.jpg",
-      },
-    ],
+    avatar_url: {
+      type: String,
+      default:
+        "https://haycafe.vn/wp-content/uploads/2021/11/Anh-avatar-dep-chat-lam-hinh-dai-dien.jpg",
+    },
     about: {
       type: String,
     },
